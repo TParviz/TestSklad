@@ -55,9 +55,6 @@ class GoodsDetailsFragment : Fragment() {
         tvPlan.text = "План : ${args.goodsDetails.qntPlan}"
         viewModel.setCurrentPriemkaDetails(args.goodsDetails)
 
-        tvPlan.setOnClickListener {
-            viewModel.addBarcodeToList("123123000")
-        }
         btnComplete.setOnClickListener {
             viewModel.sendBarcodes()
         }
