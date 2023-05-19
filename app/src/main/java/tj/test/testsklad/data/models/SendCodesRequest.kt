@@ -17,6 +17,9 @@ data class SendCodesRequest(
     val seria : String,
 
     @SerializedName("barCodes")
-    val barCodes : List<String>
+    val barCodes : List<String>,
+
+    @SerializedName("user")
+    val username: String
 
 ): Parcelable

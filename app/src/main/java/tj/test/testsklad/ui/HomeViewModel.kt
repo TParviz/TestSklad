@@ -2,6 +2,7 @@ package tj.test.testsklad.ui
 
 import android.app.Application
 import android.content.Context
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -31,7 +32,7 @@ class HomeViewModel @Inject constructor(
     private val sendBarcodesUseCaseImpl: SendBarcodesUseCaseImpl,
     private val application: Application
 ) : ViewModel() {
-    
+
     private val _priemkaList = MutableSharedFlow<List<PriemkaDataResponse>>()
     val priemkaList = _priemkaList.asSharedFlow()
 
@@ -54,6 +55,7 @@ class HomeViewModel @Inject constructor(
     private val sharedPreferences = context.getSharedPreferences("userinfo", Context.MODE_PRIVATE)
 
     private val priemkaCode = sharedPreferences?.getString("priemka", "")
+    private val userName = sharedPreferences?.getString("login", "")
 
     private val db = AppDatabase(context)
 
@@ -102,7 +104,8 @@ class HomeViewModel @Inject constructor(
             priemka = priemkaCode.toString(),
             code = currentPriemkaDetails?.code.toString(),
             seria = currentPriemkaDetails?.series.toString(),
-            barCodes = _barcodesList.value ?: emptyList()
+            barCodes = _barcodesList.value ?: emptyList(),
+            username = userName.toString()
         )
         val list = _scannedBarcode.value
         list?.let {
@@ -130,10 +133,11 @@ class HomeViewModel @Inject constructor(
             if (list?.barCodes?.isNotEmpty() == true) {
                 _barcodesList.value = list.barCodes
                 _scannedBarcode.value = SendCodesRequest(
-                    priemkaCode.toString(),
-                    currentPriemkaDetails?.code ?: "",
-                    currentPriemkaDetails?.series ?: "",
-                    list.barCodes
+                    priemka = priemkaCode.toString(),
+                    code = currentPriemkaDetails?.code ?: "",
+                    seria = currentPriemkaDetails?.series ?: "",
+                    barCodes = list.barCodes,
+                    username = userName ?: ""
                 )
             }
         }
