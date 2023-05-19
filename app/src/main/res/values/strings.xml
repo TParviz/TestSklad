@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">TestSklad</string>
+    <string name="address_link">zup.apteka-ot-sklada.ru/wms_logistika</string>
+    <string name="stock">СКЛАД</string>
+    <string name="login">Логин</string>
+    <string name="password">Пароль</string>
+    <string name="enter">Вход</string>
+    <string name="priemka">Приемка</string>
+    <string name="fact">Факт : </string>
+    <string name="scanned_codes">Отсканированные коды : </string>
+    <string name="end">Завершить</string>
+    <string name="default_user_login">Admin</string>
+    <string name="default_user_password">1987654</string>
+</resources>

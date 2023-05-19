@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="tj.test.testsklad.ui.HomeFragment"
+        android:label="HomeFragment"
+        tools:layout="@layout/fragment_home">
+
+        <action
+            android:id="@+id/action_homeFragment_to_priemkaDetailsFragment"
+            app:destination="@id/priemkaDetailsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="tj.test.testsklad.ui.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login">
+        <action
+            android:id="@+id/action_loginFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/priemkaDetailsFragment"
+        android:name="tj.test.testsklad.ui.PriemkaDetailsFragment"
+        android:label="PriemkaDetailsFragment"
+        tools:layout="@layout/fragment_priemka_details">
+        <action
+            android:id="@+id/action_priemkaDetailsFragment_to_goodsDetailsFragment"
+            app:destination="@id/goodsDetailsFragment" />
+
+        <argument
+            android:name="priemka"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/goodsDetailsFragment"
+        android:name="tj.test.testsklad.ui.GoodsDetailsFragment"
+        android:label="GoodsDetailsFragment"
+        tools:layout="@layout/fragment_goods_details">
+
+        <argument
+            android:name="goodsDetails"
+            app:argType="tj.test.testsklad.ui.models.PriemkaDetailsUi" />
+
+    </fragment>
+
+</navigation>
